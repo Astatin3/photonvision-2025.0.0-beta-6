@@ -14,6 +14,7 @@ import TargetsTab from "@/components/dashboard/tabs/TargetsTab.vue";
 import PnPTab from "@/components/dashboard/tabs/PnPTab.vue";
 import Map3DTab from "@/components/dashboard/tabs/Map3DTab.vue";
 import { WebsocketPipelineType } from "@/types/WebsocketDataTypes";
+import CustomTestTab from "@/components/dashboard/tabs/CustomTestTab.vue";
 
 interface ConfigOption {
   tabName: string;
@@ -44,6 +45,10 @@ const allTabs = Object.freeze({
   objectDetectionTab: {
     tabName: "Object Detection",
     component: ObjectDetectionTab
+  },
+  customTestTab: {
+    tabName: "Custom test",
+    component: CustomTestTab
   },
   outputTab: {
     tabName: "Output",
@@ -81,6 +86,7 @@ const getTabGroups = (): ConfigOption[][] => {
         allTabs.apriltagTab,
         allTabs.arucoTab,
         allTabs.objectDetectionTab,
+        allTabs.customTestTab,
         allTabs.outputTab
       ],
       [allTabs.targetsTab, allTabs.pnpTab, allTabs.map3dTab]
@@ -94,6 +100,7 @@ const getTabGroups = (): ConfigOption[][] => {
         allTabs.apriltagTab,
         allTabs.arucoTab,
         allTabs.objectDetectionTab,
+        allTabs.customTestTab,
         allTabs.outputTab
       ],
       [allTabs.targetsTab, allTabs.pnpTab, allTabs.map3dTab]
@@ -102,7 +109,7 @@ const getTabGroups = (): ConfigOption[][] => {
     return [
       [allTabs.inputTab],
       [allTabs.thresholdTab],
-      [allTabs.contoursTab, allTabs.apriltagTab, allTabs.arucoTab, allTabs.objectDetectionTab, allTabs.outputTab],
+      [allTabs.contoursTab, allTabs.apriltagTab, allTabs.arucoTab, allTabs.objectDetectionTab, allTabs.customTestTab,allTabs.outputTab],
       [allTabs.targetsTab, allTabs.pnpTab, allTabs.map3dTab]
     ];
   }
@@ -116,8 +123,9 @@ const tabGroups = computed<ConfigOption[][]>(() => {
   const allow3d = useCameraSettingsStore().currentPipelineSettings.solvePNPEnabled;
   const isAprilTag = useCameraSettingsStore().currentWebsocketPipelineType === WebsocketPipelineType.AprilTag;
   const isAruco = useCameraSettingsStore().currentWebsocketPipelineType === WebsocketPipelineType.Aruco;
-  const isObjectDetection =
-    useCameraSettingsStore().currentWebsocketPipelineType === WebsocketPipelineType.ObjectDetection;
+  const isObjectDetection = useCameraSettingsStore().currentWebsocketPipelineType === WebsocketPipelineType.ObjectDetection;
+  const isCustomTest = useCameraSettingsStore().currentWebsocketPipelineType === WebsocketPipelineType.CustomTest;
+
 
   return getTabGroups()
     .map((tabGroup) =>
@@ -129,7 +137,8 @@ const tabGroups = computed<ConfigOption[][]>(() => {
           !((isAprilTag || isAruco || isObjectDetection) && tabConfig.tabName === "Contours") && //Filter out contours if we're doing AprilTags
           !(!isAprilTag && tabConfig.tabName === "AprilTag") && //Filter out apriltag unless we actually are doing AprilTags
           !(!isAruco && tabConfig.tabName === "Aruco") &&
-          !(!isObjectDetection && tabConfig.tabName === "Object Detection") //Filter out aruco unless we actually are doing Aruco
+          !(!isObjectDetection && tabConfig.tabName === "Object Detection") && //Filter out aruco unless we actually are doing Aruco
+          !(!isCustomTest && tabConfig.tabName === "Custom test") // Filter out custom test
       )
     )
     .filter((it) => it.length); // Remove empty tab groups

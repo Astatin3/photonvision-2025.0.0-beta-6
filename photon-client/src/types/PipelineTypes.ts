@@ -318,7 +318,7 @@ export const DefaultObjectDetectionPipelineSettings: ObjectDetectionPipelineSett
 };
 
 export interface CustomTestPipelineSettings extends PipelineSettings {
-  pipelineType: PipelineType.AprilTag;
+  pipelineType: PipelineType.CustomTest;
   test1: number;
   test2: number;
   test3: number;
@@ -329,7 +329,7 @@ export type ConfigurableCustomTestPipelineSettings = Partial<
   ConfigurablePipelineSettings;
 export const DefaultCustomTestPipelineSettings: CustomTestPipelineSettings = {
   ...DefaultPipelineSettings,
-  pipelineType: PipelineType.AprilTag,
+  pipelineType: PipelineType.CustomTest,
   cameraGain: 20,
   targetModel: TargetModel.InfiniteRechargeHighGoalOuter,
   ledMode: true,

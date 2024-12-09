@@ -229,6 +229,8 @@ public class OutputStreamPipeline {
                     pipeProfileNanos[7] = 0;
                     pipeProfileNanos[8] = 0;
                 }
+            } else if (settings instanceof CustomTestPipelineSettings) {
+                //TODO
             }
         }
 

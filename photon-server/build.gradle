@@ -43,6 +43,7 @@ node {
 }
 
 tasks.register('copyClientUIToResources', Copy) {
+    dependsOn "processResources"
     from "${projectDir}/../photon-client/dist/"
     into "${projectDir}/src/main/resources/web/"
 }

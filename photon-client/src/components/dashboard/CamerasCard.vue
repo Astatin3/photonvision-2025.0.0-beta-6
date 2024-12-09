@@ -1,4 +1,4 @@
-<script setup lang="ts">
+zz<script setup lang="ts">
 import { computed } from "vue";
 import { useCameraSettingsStore } from "@/stores/settings/CameraSettingsStore";
 import { useStateStore } from "@/stores/StateStore";

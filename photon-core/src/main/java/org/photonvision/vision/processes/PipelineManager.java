@@ -243,6 +243,7 @@ public class PipelineManager {
     private void recreateUserPipeline() {
         // Cleanup potential old native resources before swapping over from a user
         // pipeline
+//        logger.info(currentUserPipeline.getSettings().pipelineNickname);
         if (currentUserPipeline != null && !(currentPipelineIndex < 0)) {
             currentUserPipeline.release();
         }

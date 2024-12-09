@@ -128,7 +128,7 @@ public class ObjectDetectionPipeline
         var filterContoursResult = filterContoursPipe.run(rknnResult.output);
         sumPipeNanosElapsed += filterContoursResult.nanosElapsed;
 
-        CVPipeResult<List<PotentialTarget>> sortContoursResult =
+        CVPipeResult<List< PotentialTarget>> sortContoursResult =
                 sortContoursPipe.run(
                         filterContoursResult.output.stream()
                                 .map(shape -> new PotentialTarget(shape))

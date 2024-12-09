@@ -70,7 +70,9 @@ public class AprilTagDetectionPipe
 
     @Override
     public void release() {
-        m_detector.close();
-        m_detector = null;
+        if(m_detector != null) {
+            m_detector.close();
+            m_detector = null;
+        }
     }
 }

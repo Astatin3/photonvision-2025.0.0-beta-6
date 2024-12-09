@@ -68,7 +68,7 @@ public abstract class CVPipeline<R extends CVPipelineResult, S extends CVPipelin
 
     public R run(Frame frame, QuirkyCamera cameraQuirks) {
         if (released) {
-            throw new RuntimeException("Pipeline use-after-free!");
+            throw new RuntimeException( settings.pipelineNickname + " Pipeline use-after-free!");
         }
         if (settings == null) {
             throw new RuntimeException("No settings provided for pipeline!");
@@ -92,6 +92,7 @@ public abstract class CVPipeline<R extends CVPipelineResult, S extends CVPipelin
      */
     @Override
     public void release() {
+        new Exception().printStackTrace();
         released = true;
     }
 }

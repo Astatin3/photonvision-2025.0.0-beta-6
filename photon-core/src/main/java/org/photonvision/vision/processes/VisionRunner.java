@@ -112,6 +112,7 @@ public class VisionRunner {
                 // There's no guarantee the processing type change will occur this tick, so pipelines should
                 // check themselves
                 try {
+//                    logger.info("Running pipeline with name: " + pipeline.getSettings().pipelineNickname);
                     var pipelineResult = pipeline.run(frame, cameraQuirks);
                     pipelineResultConsumer.accept(pipelineResult);
                 } catch (Exception ex) {

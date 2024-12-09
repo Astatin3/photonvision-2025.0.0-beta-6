@@ -23,17 +23,39 @@ const interactiveCols = computed(() =>
 </script>
 
 <template>
-  <div v-if="currentPipelineSettings.pipelineType === PipelineType.AprilTag">
+  <div v-if="currentPipelineSettings.pipelineType === PipelineType.CustomTest">
     <pv-slider
-      v-model="currentPipelineSettings.blur"
+      v-model="currentPipelineSettings.test1"
       class="pt-2"
       :slider-cols="interactiveCols"
-      label="Blur"
+      label="Test 1"
       tooltip="Gaussian blur added to the image, high FPS cost for slightly decreased noise"
       :min="0"
-      :max="5"
-      :step="0.1"
-      @input="(value) => useCameraSettingsStore().changeCurrentPipelineSetting({ blur: value }, false)"
+      :max="10"
+      :step="1"
+      @input="(value) => useCameraSettingsStore().changeCurrentPipelineSetting({ test1: value }, false)"
+    />
+    <pv-slider
+      v-model="currentPipelineSettings.test2"
+      class="pt-2"
+      :slider-cols="interactiveCols"
+      label="Test 2"
+      tooltip="Gaussian blur added to the image, high FPS cost for slightly decreased noise"
+      :min="0"
+      :max="10"
+      :step="1"
+      @input="(value) => useCameraSettingsStore().changeCurrentPipelineSetting({ test2: value }, false)"
+  />
+  <pv-slider
+        v-model="currentPipelineSettings.test3"
+        class="pt-2"
+        :slider-cols="interactiveCols"
+        label="Test 3"
+        tooltip="Gaussian blur added to the image, high FPS cost for slightly decreased noise"
+        :min="0"
+        :max="10"
+        :step="1"
+        @input="(value) => useCameraSettingsStore().changeCurrentPipelineSetting({ test3: value }, false)"
     />
   </div>
 </template>
