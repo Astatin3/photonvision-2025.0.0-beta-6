@@ -380,6 +380,12 @@ public class PipelineManager {
                     added.pipelineNickname = nickname;
                     return added;
                 }
+            case CustomTest:
+                {
+                    var added = new CustomTestPipelineSettings();
+                    added.pipelineNickname = nickname;
+                    return added;
+                }
             default:
                 {
                     logger.error("Got invalid pipeline type: " + type);

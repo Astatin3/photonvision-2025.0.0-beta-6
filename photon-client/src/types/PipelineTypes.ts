@@ -6,7 +6,8 @@ export enum PipelineType {
   ColoredShape = 3,
   AprilTag = 4,
   Aruco = 5,
-  ObjectDetection = 6
+  ObjectDetection = 6,
+  CustomTest = 7
 }
 
 export enum AprilTagFamily {
@@ -316,6 +317,29 @@ export const DefaultObjectDetectionPipelineSettings: ObjectDetectionPipelineSett
   model: ""
 };
 
+export interface CustomTestPipelineSettings extends PipelineSettings {
+  pipelineType: PipelineType.AprilTag;
+  test1: number;
+  test2: number;
+  test3: number;
+}
+export type ConfigurableCustomTestPipelineSettings = Partial<
+  Omit<CustomTestPipelineSettings, "pipelineType" | "hammingDist" | "debug">
+> &
+  ConfigurablePipelineSettings;
+export const DefaultCustomTestPipelineSettings: CustomTestPipelineSettings = {
+  ...DefaultPipelineSettings,
+  pipelineType: PipelineType.AprilTag,
+  cameraGain: 20,
+  targetModel: TargetModel.InfiniteRechargeHighGoalOuter,
+  ledMode: true,
+  outputShowMultipleTargets: false,
+  cameraExposureRaw: 6,
+  test1: 1,
+  test2: 2,
+  test3: 3
+};
+
 export interface Calibration3dPipelineSettings extends PipelineSettings {
   drawAllSnapshots: boolean;
 }
@@ -338,6 +362,7 @@ export type ActivePipelineSettings =
   | AprilTagPipelineSettings
   | ArucoPipelineSettings
   | ObjectDetectionPipelineSettings
+  | CustomTestPipelineSettings
   | Calibration3dPipelineSettings;
 
 export type ActiveConfigurablePipelineSettings =
@@ -346,4 +371,5 @@ export type ActiveConfigurablePipelineSettings =
   | ConfigurableAprilTagPipelineSettings
   | ConfigurableArucoPipelineSettings
   | ConfigurableObjectDetectionPipelineSettings
+  | ConfigurableCustomTestPipelineSettings
   | ConfigurableCalibration3dPipelineSettings;
