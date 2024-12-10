@@ -324,17 +324,20 @@ export interface CustomTestPipelineSettings extends PipelineSettings {
   test3: number;
 }
 export type ConfigurableCustomTestPipelineSettings = Partial<
-  Omit<CustomTestPipelineSettings, "pipelineType" | "hammingDist" | "debug">
+  Omit<CustomTestPipelineSettings, "pipelineType">
 > &
   ConfigurablePipelineSettings;
 export const DefaultCustomTestPipelineSettings: CustomTestPipelineSettings = {
   ...DefaultPipelineSettings,
   pipelineType: PipelineType.CustomTest,
-  cameraGain: 20,
-  targetModel: TargetModel.InfiniteRechargeHighGoalOuter,
-  ledMode: true,
-  outputShowMultipleTargets: false,
-  cameraExposureRaw: 6,
+  cameraGain: 75,
+  outputShowMultipleTargets: true,
+  targetModel: TargetModel.AprilTag6p5in_36h11,
+  cameraExposureRaw: -1,
+  cameraAutoExposure: true,
+  ledMode: false,
+
+
   test1: 1,
   test2: 2,
   test3: 3

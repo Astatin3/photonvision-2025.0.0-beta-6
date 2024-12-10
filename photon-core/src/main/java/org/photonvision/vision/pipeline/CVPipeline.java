@@ -92,7 +92,6 @@ public abstract class CVPipeline<R extends CVPipelineResult, S extends CVPipelin
      */
     @Override
     public void release() {
-        new Exception().printStackTrace();
         released = true;
     }
 }

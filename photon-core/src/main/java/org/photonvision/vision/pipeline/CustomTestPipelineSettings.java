@@ -2,7 +2,7 @@ package org.photonvision.vision.pipeline;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-@JsonTypeName("AprilTagPipelineSettings")
+@JsonTypeName("CustomTestPipelineSettings")
 public class CustomTestPipelineSettings extends AdvancedPipelineSettings {
     public int test1 = 1;
     public int test2 = 2;
@@ -10,7 +10,7 @@ public class CustomTestPipelineSettings extends AdvancedPipelineSettings {
 
     public CustomTestPipelineSettings() {
         super();
-
+        pipelineType = PipelineType.CustomTest;
     }
     @Override
     public int hashCode() {
