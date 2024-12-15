@@ -25,37 +25,59 @@ const interactiveCols = computed(() =>
 <template>
   <div v-if="currentPipelineSettings.pipelineType === PipelineType.CustomTest">
     <pv-slider
-      v-model="currentPipelineSettings.test1"
+      v-model="currentPipelineSettings.featureThreshold"
       class="pt-2"
       :slider-cols="interactiveCols"
-      label="Test 1"
-      tooltip="Gaussian blur added to the image, high FPS cost for slightly decreased noise"
+      label="Feature Threshold"
+      tooltip="The sharpness required in a feature for FAST to detect it"
       :min="0"
-      :max="10"
+      :max="100"
       :step="1"
-      @input="(value) => useCameraSettingsStore().changeCurrentPipelineSetting({ test1: value }, false)"
+      @input="(value) => useCameraSettingsStore().changeCurrentPipelineSetting({ featureThreshold: value }, false)"
     />
     <pv-slider
-      v-model="currentPipelineSettings.test2"
+      v-model="currentPipelineSettings.minFeatures"
       class="pt-2"
       :slider-cols="interactiveCols"
-      label="Test 2"
-      tooltip="Gaussian blur added to the image, high FPS cost for slightly decreased noise"
+      label="Minimum Features"
+      tooltip="Minimum amount of features for calculation of camera translation"
       :min="0"
-      :max="10"
+      :max="1000"
       :step="1"
-      @input="(value) => useCameraSettingsStore().changeCurrentPipelineSetting({ test2: value }, false)"
-  />
-  <pv-slider
-        v-model="currentPipelineSettings.test3"
-        class="pt-2"
-        :slider-cols="interactiveCols"
-        label="Test 3"
-        tooltip="Gaussian blur added to the image, high FPS cost for slightly decreased noise"
-        :min="0"
-        :max="10"
-        :step="1"
-        @input="(value) => useCameraSettingsStore().changeCurrentPipelineSetting({ test3: value }, false)"
+      @input="(value) => useCameraSettingsStore().changeCurrentPipelineSetting({ minFeatures: value }, false)"
+    />
+    <pv-slider
+      v-model="currentPipelineSettings.imageDifferenceThreshold"
+      class="pt-2"
+      :slider-cols="interactiveCols"
+      label="Image Difference Threshold"
+      tooltip="Minimum amount of difference between points to update position"
+      :min="0"
+      :max="1000"
+      :step="1"
+      @input="(value) => useCameraSettingsStore().changeCurrentPipelineSetting({ imageDifferenceThreshold: value }, false)"
+    />
+    <pv-slider
+      v-model="currentPipelineSettings.essentialMatProb"
+      class="pt-2"
+      :slider-cols="interactiveCols"
+      label="Essential Matrix Prob"
+      tooltip="'Prob' for cv2.findEssentialMat"
+      :min="0"
+      :max="1"
+      :step="0.001"
+      @input="(value) => useCameraSettingsStore().changeCurrentPipelineSetting({ essentialMatProb: value }, false)"
+    />
+    <pv-slider
+      v-model="currentPipelineSettings.essentialMatThreshold"
+      class="pt-2"
+      :slider-cols="interactiveCols"
+      label="Essential Matrix Threshold"
+      tooltip="'Threshold' for cv2.findEssentialMat"
+      :min="0"
+      :max="1"
+      :step="0.001"
+      @input="(value) => useCameraSettingsStore().changeCurrentPipelineSetting({ essentialMatThreshold: value }, false)"
     />
   </div>
 </template>

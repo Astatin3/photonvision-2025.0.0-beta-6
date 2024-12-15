@@ -319,9 +319,25 @@ export const DefaultObjectDetectionPipelineSettings: ObjectDetectionPipelineSett
 
 export interface CustomTestPipelineSettings extends PipelineSettings {
   pipelineType: PipelineType.CustomTest;
-  test1: number;
-  test2: number;
-  test3: number;
+
+  featureThreshold: number
+  minFeatures: number,
+  imageDifferenceThreshold: number,
+  essentialMatProb: number
+  essentialMatThreshold: number,
+
+  hammingDist: number;
+  numIterations: number;
+  decimate: number;
+  blur: number;
+  decisionMargin: number;
+  refineEdges: boolean;
+  debug: boolean;
+  threads: number;
+  tagFamily: AprilTagFamily;
+  doMultiTarget: boolean;
+  doSingleTargetAlways: boolean;
+
 }
 export type ConfigurableCustomTestPipelineSettings = Partial<
   Omit<CustomTestPipelineSettings, "pipelineType">
@@ -337,10 +353,24 @@ export const DefaultCustomTestPipelineSettings: CustomTestPipelineSettings = {
   cameraAutoExposure: true,
   ledMode: false,
 
+  featureThreshold: 1,
+  minFeatures: 500,
+  imageDifferenceThreshold: 150,
+  essentialMatProb: 0.999,
+  essentialMatThreshold: 1.,
 
-  test1: 1,
-  test2: 2,
-  test3: 3
+
+  hammingDist: 0,
+  numIterations: 40,
+  decimate: 1,
+  blur: 0,
+  decisionMargin: 35,
+  refineEdges: true,
+  debug: false,
+  threads: 4,
+  tagFamily: AprilTagFamily.Family36h11,
+  doMultiTarget: false,
+  doSingleTargetAlways: false
 };
 
 export interface Calibration3dPipelineSettings extends PipelineSettings {
